@@ -1,0 +1,37 @@
+{
+	"private": true,
+	"name": "berlin-demonstrations-ics-service",
+	"description": "Serve an .ics file for demonstrations in Berlin.",
+	"version": "1.0.0",
+	"main": "index.js",
+	"keywords": [
+		"demonstrations",
+		"berlin",
+		"germany",
+		"ics",
+		"ical",
+		"calendar"
+	],
+	"author": "Jannis R <mail@jannisr.de>",
+	"homepage": "https://github.com/derhuerst/berlin-demonstrations-ics-service",
+	"repository": "derhuerst/berlin-demonstrations-ics-service",
+	"bugs": "https://github.com/derhuerst/berlin-demonstrations-ics-service/issues",
+	"license": "ISC",
+	"engines": {
+		"node": ">=18"
+	},
+	"dependencies": {
+		"debug": "^4.3.4",
+		"ics-service": "^1.0.0",
+		"luxon": "^3.0.1"
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"start": "node index.js",
+		"test": "node test/index.js",
+		"prepublishOnly": "npm run lint && npm test"
+	},
+	"devDependencies": {
+		"eslint": "^8.20.0"
+	}
+}
