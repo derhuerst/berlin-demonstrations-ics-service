@@ -12,8 +12,36 @@ const TITLE = 'Demonstrations in Berlin'
 const REPO_URL = pkg.homepage
 ok(REPO_URL, 'pkg.homepage should not be empty')
 
+const DEMONSTRATIONS_CACHE_TTL = process.env.DEMONSTRATIONS_CACHE_TTL
+	? parseInt(process.env.DEMONSTRATIONS_CACHE_TTL)
+	: 10 * 60 * 1000 // 10m
+
+// todo: use a lib for this!
+const memoizeFor = (ms, asyncFn) => {
+	let lastCall = 0
+	let memoized = null
+	let pRefresh = null // or Promise
+	const memoizedFn = async () => {
+		const t = Date.now()
+		if ((t - lastCall) <= ms) return memoized
+		if (pRefresh !== null) {
+			// some other memoizedFn() call is already running
+			return await pRefresh
+		}
+
+		pRefresh = asyncFn()
+		memoized = await pRefresh
+		pRefresh = null
+		lastCall = t
+		return memoized
+	}
+	return memoizedFn
+}
+
+const cachedFetchDemonstrations = memoizeFor(DEMONSTRATIONS_CACHE_TTL, fetchDemonstrations)
+
 const generateBerlinDemonstrationsIcs = async (feedUrl = null) => {
-	const demonstrations = await fetchDemonstrations()
+	const demonstrations = await cachedFetchDemonstrations()
 
 	const events = demonstrations.map((d) => {
 		let duration = d.start && d.end
