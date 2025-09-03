@@ -1,12 +1,12 @@
-'use strict'
+import {ok} from 'node:assert'
+import {Duration} from 'luxon'
+import {createHash} from 'node:crypto'
+import generateIcs from 'ics-service/generate-ics.js'
+import createDebug from 'debug'
+import {fetchDemonstrations} from './lib/fetch-demonstrations.js'
+import pkg from './package.json' with {type: 'json'}
 
-const {ok} = require('assert')
-const {Duration} = require('luxon')
-const {createHash} = require('crypto')
-const generateIcs = require('ics-service/generate-ics')
-const debug = require('debug')('berlin-demonstrations-ics-service:ics')
-const {fetchDemonstrations} = require('./lib/fetch-demonstrations')
-const pkg = require('./package.json')
+const debug = createDebug('berlin-demonstrations-ics-service:ics')
 
 const TITLE = 'Demonstrations in Berlin'
 const REPO_URL = pkg.homepage
@@ -87,4 +87,6 @@ const generateBerlinDemonstrationsIcs = async (feedUrl = null) => {
 	return generateIcs(TITLE, events, feedUrl)
 }
 
-module.exports = generateBerlinDemonstrationsIcs
+export {
+	generateBerlinDemonstrationsIcs as getIcs,
+}

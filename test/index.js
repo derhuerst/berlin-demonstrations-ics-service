@@ -1,9 +1,7 @@
-'use strict'
-
-const {
+import {
 	notStrictEqual,
-} = require('assert')
+} from 'node:assert'
 
-const getIcs = require('../ics')
+import {getIcs} from '../ics.js'
 
-notStrictEqual(getIcs(), '', 'generate ICS must not be empty')
+notStrictEqual(await getIcs(), '', 'generate ICS must not be empty')

@@ -1,8 +1,6 @@
-'use strict'
+import createAboutRoute from 'ics-service/about.js'
 
-const aboutRoute = require('ics-service/about')
-
-module.exports = aboutRoute(
+export const aboutRoute = createAboutRoute(
 	'Berlin demonstrations calendar feed',
 	'/api/feed',
 )

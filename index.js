@@ -1,8 +1,6 @@
-'use strict'
-
-const {createServer} = require('http')
-const about = require('./api')
-const feed = require('./api/feed')
+import {createServer} from 'node:http'
+import {aboutRoute as about} from './api/index.js'
+import {feedRoute as feed} from './api/feed.js'
 
 const server = createServer((req, res) => {
 	const path = new URL(req.url, 'http://example.org').pathname

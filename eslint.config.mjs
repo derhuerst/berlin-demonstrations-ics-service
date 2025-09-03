@@ -5,7 +5,7 @@ export default [
 	eslint.configs.recommended,
 	{
 		languageOptions: {
-			ecmaVersion: 2020,
+			ecmaVersion: 2025,
 			globals: globals.node,
 		},
 		rules: {
