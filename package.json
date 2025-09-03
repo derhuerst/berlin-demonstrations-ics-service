@@ -18,7 +18,7 @@
 	"bugs": "https://github.com/derhuerst/berlin-demonstrations-ics-service/issues",
 	"license": "ISC",
 	"engines": {
-		"node": ">=24"
+		"node": ">=24.0.0"
 	},
 	"dependencies": {
 		"cross-fetch": "^4.1.0",
