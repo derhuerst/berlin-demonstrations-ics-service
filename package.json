@@ -33,6 +33,6 @@
 		"prepublishOnly": "npm run lint && npm test"
 	},
 	"devDependencies": {
-		"eslint": "^8.20.0"
+		"eslint": "^9.34.0"
 	}
 }
